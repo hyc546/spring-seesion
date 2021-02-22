@@ -6,15 +6,21 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- spring注解、bean的处理器 -->
+
     <context:annotation-config/>
+    <!--导入属性文件-->
 
     <context:property-placeholder location="classpath:redis.properties"/>
+    <!-- 配置jedis连接工厂，用于连接redis -->
+
     <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory">
         <property name="hostName" value="${redis.hostName}"/>
         <property name="port" value="${redis.port}"/>
         <property name="usePool" value="${redis.usePool}"/>
         <property name="timeout" value="${redis.timeout}"/>
     </bean>
+    <!--导入springsession的配置文件-->
 
     <import resource="classpath:applicationContext-session.xml"></import>
 </beans>
